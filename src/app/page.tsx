@@ -48,7 +48,7 @@ export default function Home() {
             <Cpu size={12} />
             <span>SYSTEM STATUS: ONLINE</span>
           </div>
-          <h2 className="text-5xl font-bold leading-tight">
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight">
             Cold Analysis for <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-emerald-600">
               Chaotic Markets
