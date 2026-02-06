@@ -9,8 +9,8 @@ import TableOfContents from '../components/TableOfContents.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.props;
-const { headings } = await Astro.props.post.render();
+const { title, description, pubDate, updatedDate, heroImage, tags, headings = [] } = Astro.props;
+// const { headings } = await Astro.props.post.render(); // 삭제 (여기서 렌더링하면 안됨)
 ---
 
 <BaseLayout title={title} description={description}>
