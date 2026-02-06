@@ -1,0 +1,37 @@
+<button class="copy-button absolute top-2 right-2 bg-muted text-neutral-400 hover:text-accent p-1.5 rounded transition-colors opacity-0 group-hover:opacity-100" aria-label="Copy code">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+</button>
+
+<script>
+    // 모든 코드 블록에 복사 버튼 기능 바인딩
+    document.querySelectorAll('pre').forEach((pre) => {
+        // 부모 요소(div)를 relative로 만들어서 버튼 위치 잡기
+        const wrapper = document.createElement('div');
+        wrapper.className = 'relative group';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        // 버튼 생성 및 추가
+        const button = document.createElement('button');
+        button.className = 'copy-button absolute top-2 right-2 bg-[#262626] text-[#a3a3a3] hover:text-[#00ff41] p-1.5 rounded transition-all opacity-0 group-hover:opacity-100 cursor-pointer border border-transparent hover:border-[#00ff41]/30';
+        button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>`;
+        
+        wrapper.appendChild(button);
+
+        button.addEventListener('click', async () => {
+            const code = pre.querySelector('code')?.innerText;
+            if (code) {
+                await navigator.clipboard.writeText(code);
+                
+                // 복사 완료 피드백 (아이콘 변경)
+                button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>`;
+                button.classList.add('text-[#00ff41]');
+                
+                setTimeout(() => {
+                    button.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>`;
+                    button.classList.remove('text-[#00ff41]');
+                }, 2000);
+            }
+        });
+    });
+</script>
