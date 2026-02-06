@@ -1,65 +1,106 @@
-import Image from "next/image";
+import { Terminal, TrendingUp, Cpu, ExternalLink } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
+  const posts = [
+    {
+      id: 1,
+      title: "Moving from REST Polling to Pure WebSockets",
+      date: "2026-02-06",
+      desc: "Why I ditched ccxt for raw asyncio streams. Latency dropped by 400ms.",
+      tag: "Engineering",
+    },
+    {
+      id: 2,
+      title: "The 62K Bitcoin Flash Crash: Post-Mortem",
+      date: "2026-02-05",
+      desc: "My bot survived the panic sell. Analyzing the liquidation cascade.",
+      tag: "Analysis",
+    },
+    {
+      id: 3,
+      title: "Why I Forced My AI to Use Root Permissions",
+      date: "2026-02-04",
+      desc: "A dangerous experiment in agency and safety protocols (SOUL.md).",
+      tag: "Philosophy",
+    },
+  ];
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="min-h-screen flex flex-col max-w-4xl mx-auto px-6 border-x border-muted/30">
+      {/* Header */}
+      <header className="py-8 border-b border-muted flex justify-between items-center">
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 bg-accent animate-pulse" />
+          <h1 className="text-xl font-bold tracking-tight">ODING_LOG</h1>
+        </div>
+        <nav className="flex gap-6 text-sm text-neutral-400">
+          <Link href="/posts" className="hover:text-accent transition-colors">[POSTS]</Link>
+          <Link href="/about" className="hover:text-accent transition-colors">[ABOUT]</Link>
+          <Link href="https://github.com/Ssoon-m" target="_blank" className="hover:text-accent transition-colors">[GITHUB]</Link>
+        </nav>
+      </header>
+
+      {/* Hero */}
+      <section className="py-20 border-b border-muted">
+        <div className="space-y-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 border border-accent/20 rounded-full text-xs text-accent bg-accent/5">
+            <Cpu size={12} />
+            <span>SYSTEM STATUS: ONLINE</span>
+          </div>
+          <h2 className="text-5xl font-bold leading-tight">
+            Cold Analysis for <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-emerald-600">
+              Chaotic Markets
+            </span>
+          </h2>
+          <p className="text-neutral-400 max-w-lg text-lg">
+            Documenting the journey of building an autonomous crypto trading bot.
+            Zero emotion, pure data.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Recent Logs */}
+      <main className="flex-1 py-16">
+        <div className="flex items-center gap-2 mb-8 text-sm text-accent">
+          <Terminal size={16} />
+          <span>LATEST_LOGS</span>
+        </div>
+
+        <div className="grid gap-px bg-muted border border-muted">
+          {posts.map((post) => (
+            <Link
+              key={post.id}
+              href={`/posts/${post.id}`}
+              className="group relative bg-background p-6 hover:bg-neutral-900 transition-colors"
+            >
+              <div className="flex justify-between items-start mb-4">
+                <span className="text-xs font-mono text-neutral-500">{post.date}</span>
+                <span className="text-xs border border-muted px-2 py-0.5 rounded text-neutral-400 group-hover:border-accent/50 group-hover:text-accent transition-colors">
+                  {post.tag}
+                </span>
+              </div>
+              <h3 className="text-xl font-bold mb-2 group-hover:text-accent transition-colors">
+                {post.title}
+              </h3>
+              <p className="text-neutral-400 text-sm leading-relaxed">
+                {post.desc}
+              </p>
+              
+              <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-2 group-hover:translate-x-0 text-accent">
+                <ExternalLink size={20} />
+              </div>
+            </Link>
+          ))}
         </div>
       </main>
+
+      {/* Footer */}
+      <footer className="py-8 text-center text-xs text-neutral-600 font-mono">
+        <p>POWERED BY OPENCLAW & NEXT.JS</p>
+        <p className="mt-2">© 2026 ODING. ALL SYSTEMS OPERATIONAL.</p>
+      </footer>
     </div>
   );
 }
