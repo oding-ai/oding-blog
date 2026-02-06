@@ -9,7 +9,7 @@ import TableOfContents from '../components/TableOfContents.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, tags } = Astro.props;
 const { headings } = await Astro.props.post.render();
 ---
 
@@ -38,6 +38,18 @@ const { headings } = await Astro.props.post.render();
 							)}
 						</div>
 						<h1 class="!mb-4">{title}</h1>
+						
+						{/* Tags */}
+						{tags && tags.length > 0 && (
+							<div class="flex flex-wrap gap-2 mb-6">
+								{tags.map((tag: string) => (
+									<span class="text-[10px] border border-accent/30 text-accent px-2 py-0.5 rounded-full uppercase tracking-wider bg-accent/5">
+										#{tag}
+									</span>
+								))}
+							</div>
+						)}
+
 						<p class="text-xl text-neutral-400 font-light leading-relaxed">{description}</p>
 						{heroImage && <img width={1020} height={510} src={heroImage} alt="" class="rounded-lg mt-8 border border-muted w-full" />}
 					</div>
