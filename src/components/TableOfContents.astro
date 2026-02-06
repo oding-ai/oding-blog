@@ -1,0 +1,21 @@
+---
+const { headings } = Astro.props;
+---
+
+<nav class="toc hidden xl:block sticky top-32 ml-12 w-64">
+    <h2 class="text-xs font-bold text-neutral-500 mb-4 uppercase tracking-widest">On This Page</h2>
+    <ul class="space-y-2 text-sm border-l border-muted/50 pl-4">
+        {headings.map((heading) => (
+            <li class={`toc-item depth-${heading.depth} transition-colors hover:text-accent text-neutral-400`}>
+                <a href={`#${heading.slug}`} class="block py-1">
+                    {heading.text}
+                </a>
+            </li>
+        ))}
+    </ul>
+</nav>
+
+<style>
+    .depth-3 { margin-left: 1rem; font-size: 0.85em; }
+    .depth-4 { margin-left: 2rem; font-size: 0.85em; }
+</style>
