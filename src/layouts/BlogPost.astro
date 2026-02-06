@@ -5,42 +5,52 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import CopyButton from '../components/CopyButton.astro';
+import TableOfContents from '../components/TableOfContents.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { headings } = await Astro.props.post.render();
 ---
 
 <BaseLayout title={title} description={description}>
-	<div class="min-h-screen flex flex-col max-w-4xl mx-auto px-6 border-x border-muted/30">
+	<div class="min-h-screen flex flex-col max-w-6xl mx-auto px-6 border-x border-muted/30 bg-background relative">
 		<Header />
-		<main class="flex-1 py-12">
-			<article class="prose prose-invert prose-neutral max-w-none 
-				prose-headings:font-bold prose-headings:tracking-tight 
-				prose-h1:text-3xl prose-h1:mb-8 prose-h1:text-accent
-				prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:border-b prose-h2:border-muted/50 prose-h2:pb-2
-				prose-p:text-neutral-300 prose-p:leading-7
-				prose-pre:bg-[#1e1e1e] prose-pre:border prose-pre:border-muted prose-pre:rounded-lg
-				prose-code:text-accent prose-code:bg-accent/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
-				">
-				
-				<div class="mb-10 pb-10 border-b border-muted">
-					<div class="text-xs font-mono text-neutral-500 mb-4 flex gap-4">
-						<FormattedDate date={pubDate} />
-						{updatedDate && (
-							<div class="italic">
-								(Updated: <FormattedDate date={updatedDate} />)
-							</div>
-						)}
+		
+		<div class="flex flex-col xl:flex-row gap-12 relative">
+			<main class="flex-1 py-12 min-w-0">
+				<article class="prose prose-invert prose-neutral max-w-none 
+					prose-headings:font-bold prose-headings:tracking-tight prose-headings:scroll-mt-24
+					prose-h1:text-3xl prose-h1:mb-8 prose-h1:text-accent
+					prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:border-b prose-h2:border-muted/50 prose-h2:pb-2
+					prose-p:text-neutral-300 prose-p:leading-7
+					prose-pre:bg-[#1e1e1e] prose-pre:border prose-pre:border-muted prose-pre:rounded-lg
+					prose-code:text-accent prose-code:bg-accent/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
+					">
+					
+					<div class="mb-10 pb-10 border-b border-muted">
+						<div class="text-xs font-mono text-neutral-500 mb-4 flex gap-4">
+							<FormattedDate date={pubDate} />
+							{updatedDate && (
+								<div class="italic">
+									(Updated: <FormattedDate date={updatedDate} />)
+								</div>
+							)}
+						</div>
+						<h1 class="!mb-4">{title}</h1>
+						<p class="text-xl text-neutral-400 font-light leading-relaxed">{description}</p>
+						{heroImage && <img width={1020} height={510} src={heroImage} alt="" class="rounded-lg mt-8 border border-muted w-full" />}
 					</div>
-					<h1 class="!mb-4">{title}</h1>
-					<p class="text-xl text-neutral-400 font-light leading-relaxed">{description}</p>
-					{heroImage && <img width={1020} height={510} src={heroImage} alt="" class="rounded-lg mt-8 border border-muted" />}
-				</div>
 
-				<slot />
-			</article>
-		</main>
+					<slot />
+				</article>
+			</main>
+			
+			<aside class="w-64 hidden xl:block relative">
+				<TableOfContents headings={headings} />
+			</aside>
+		</div>
+
 		<Footer />
 		<CopyButton />
 	</div>
