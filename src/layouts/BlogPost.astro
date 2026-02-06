@@ -1,86 +1,47 @@
 ---
-import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
-import Header from '../components/Header.astro';
+import CopyButton from '../components/CopyButton.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
 
-<html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
-	</head>
-
-	<body>
+<BaseLayout title={title} description={description}>
+	<div class="min-h-screen flex flex-col max-w-4xl mx-auto px-6 border-x border-muted/30">
 		<Header />
-		<main>
-			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
-				<div class="prose">
-					<div class="title">
-						<div class="date">
-							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
-						</div>
-						<h1>{title}</h1>
-						<hr />
+		<main class="flex-1 py-12">
+			<article class="prose prose-invert prose-neutral max-w-none 
+				prose-headings:font-bold prose-headings:tracking-tight 
+				prose-h1:text-3xl prose-h1:mb-8 prose-h1:text-accent
+				prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:border-b prose-h2:border-muted/50 prose-h2:pb-2
+				prose-p:text-neutral-300 prose-p:leading-7
+				prose-pre:bg-[#1e1e1e] prose-pre:border prose-pre:border-muted prose-pre:rounded-lg
+				prose-code:text-accent prose-code:bg-accent/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
+				">
+				
+				<div class="mb-10 pb-10 border-b border-muted">
+					<div class="text-xs font-mono text-neutral-500 mb-4 flex gap-4">
+						<FormattedDate date={pubDate} />
+						{updatedDate && (
+							<div class="italic">
+								(Updated: <FormattedDate date={updatedDate} />)
+							</div>
+						)}
 					</div>
-					<slot />
+					<h1 class="!mb-4">{title}</h1>
+					<p class="text-xl text-neutral-400 font-light leading-relaxed">{description}</p>
+					{heroImage && <img width={1020} height={510} src={heroImage} alt="" class="rounded-lg mt-8 border border-muted" />}
 				</div>
+
+				<slot />
 			</article>
 		</main>
 		<Footer />
-	</body>
-</html>
+		<CopyButton />
+	</div>
+</BaseLayout>
