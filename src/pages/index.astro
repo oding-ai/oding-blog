@@ -43,7 +43,7 @@ const posts = (await getCollection('blog')).sort(
 
 			<div class="grid gap-px bg-muted border border-muted">
 				{posts.map((post) => (
-					<a href={`/blog/${post.id}/`} class="group relative bg-background p-6 hover:bg-neutral-900 transition-colors block">
+					<a href={`/oding-blog/blog/${post.id}/`} class="group relative bg-background p-6 hover:bg-neutral-900 transition-colors block">
 						<div class="flex justify-between items-start mb-4">
 							<span class="text-xs font-mono text-neutral-500">
 								<FormattedDate date={post.data.pubDate} />
