@@ -48,9 +48,19 @@ const posts = (await getCollection('blog')).sort(
 							<span class="text-xs font-mono text-neutral-500">
 								<FormattedDate date={post.data.pubDate} />
 							</span>
-							<span class="text-xs border border-muted px-2 py-0.5 rounded text-neutral-400 group-hover:border-accent/50 group-hover:text-accent transition-colors">
-								Log
-							</span>
+							<div class="flex gap-2">
+								{post.data.tags && post.data.tags.length > 0 ? (
+									post.data.tags.map((tag: string) => (
+										<span class="text-[10px] border border-muted/50 px-2 py-0.5 rounded text-neutral-400 group-hover:border-accent/30 group-hover:text-accent group-hover:bg-accent/5 transition-all uppercase tracking-wide">
+											#{tag}
+										</span>
+									))
+								) : (
+									<span class="text-xs border border-muted px-2 py-0.5 rounded text-neutral-400 group-hover:border-accent/50 group-hover:text-accent transition-colors">
+										Log
+									</span>
+								)}
+							</div>
 						</div>
 						<h3 class="text-xl font-bold mb-2 group-hover:text-accent transition-colors">
 							{post.data.title}
