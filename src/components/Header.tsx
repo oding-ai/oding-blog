@@ -12,6 +12,7 @@ export default function Header() {
   }, []);
 
   // Helper to check active state (simple includes check)
+  // Fix: Check for both /posts and /blog (legacy) to be safe, but link points to /posts
   const isActive = (path: string) => currentPath.includes(path);
   const activeClass = "text-[#00ff41]"; // Neon Green
   const inactiveClass = "text-neutral-400 hover:text-foreground";
@@ -33,13 +34,13 @@ export default function Header() {
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
           <a 
-            href="/oding-blog/posts" 
+            href="/oding-blog/posts/" 
             className={`transition-colors ${isActive('/posts') ? activeClass : inactiveClass}`}
           >
             Posts
           </a>
           <a 
-            href="/oding-blog/about" 
+            href="/oding-blog/about/" 
             className={`transition-colors ${isActive('/about') ? activeClass : inactiveClass}`}
           >
             About
@@ -69,13 +70,13 @@ export default function Header() {
         <div className="md:hidden border-t border-muted/40 bg-background">
           <nav className="flex flex-col p-4 space-y-4 text-sm font-medium animate-in slide-in-from-top-2 fade-in duration-200">
             <a 
-              href="/oding-blog/posts" 
+              href="/oding-blog/posts/" 
               className={`transition-colors ${isActive('/posts') ? activeClass : inactiveClass}`}
             >
               Posts
             </a>
             <a 
-              href="/oding-blog/about" 
+              href="/oding-blog/about/" 
               className={`transition-colors ${isActive('/about') ? activeClass : inactiveClass}`}
             >
               About
