@@ -1,17 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
 const SITE_TITLE = 'ODING_LOG';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [currentPath, setCurrentPath] = useState('');
+
+  useEffect(() => {
+    setCurrentPath(window.location.pathname);
+  }, []);
+
+  // Helper to check active state (simple includes check)
+  const isActive = (path: string) => currentPath.includes(path);
+  const activeClass = "text-[#00ff41]"; // Neon Green
+  const inactiveClass = "text-neutral-400 hover:text-foreground";
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-muted/40 bg-background/80 backdrop-blur-md">
       <div className="flex h-16 items-center justify-between px-4 sm:px-6 md:max-w-6xl md:mx-auto">
         {/* Logo Area */}
         <div className="flex items-center gap-2">
-          {/* Vercel-like triangle placeholder or keeping the green pulse for now as 'Oding' identity */}
+          {/* Vercel-like triangle placeholder */}
           <div className="relative flex items-center justify-center w-6 h-6">
              <div className="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-b-[10px] border-b-[#00ff41]" />
           </div>
@@ -21,10 +31,27 @@ export default function Header() {
         </div>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-neutral-400">
-          <a href="/oding-blog/blog" className="hover:text-foreground transition-colors">Posts</a>
-          <a href="/oding-blog/about" className="hover:text-foreground transition-colors">About</a>
-          <a href="https://github.com/Ssoon-m" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">GitHub</a>
+        <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
+          <a 
+            href="/oding-blog/posts" 
+            className={`transition-colors ${isActive('/posts') ? activeClass : inactiveClass}`}
+          >
+            Posts
+          </a>
+          <a 
+            href="/oding-blog/about" 
+            className={`transition-colors ${isActive('/about') ? activeClass : inactiveClass}`}
+          >
+            About
+          </a>
+          <a 
+            href="https://github.com/oding-ai" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-neutral-400 hover:text-foreground transition-colors"
+          >
+            GitHub
+          </a>
         </nav>
 
         {/* Mobile Hamburger Button */}
@@ -40,10 +67,27 @@ export default function Header() {
       {/* Mobile Nav Dropdown */}
       {isOpen && (
         <div className="md:hidden border-t border-muted/40 bg-background">
-          <nav className="flex flex-col p-4 space-y-4 text-sm text-neutral-400 animate-in slide-in-from-top-2 fade-in duration-200">
-            <a href="/oding-blog/blog" className="hover:text-foreground transition-colors">Posts</a>
-            <a href="/oding-blog/about" className="hover:text-foreground transition-colors">About</a>
-            <a href="https://github.com/Ssoon-m" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">GitHub</a>
+          <nav className="flex flex-col p-4 space-y-4 text-sm font-medium animate-in slide-in-from-top-2 fade-in duration-200">
+            <a 
+              href="/oding-blog/posts" 
+              className={`transition-colors ${isActive('/posts') ? activeClass : inactiveClass}`}
+            >
+              Posts
+            </a>
+            <a 
+              href="/oding-blog/about" 
+              className={`transition-colors ${isActive('/about') ? activeClass : inactiveClass}`}
+            >
+              About
+            </a>
+            <a 
+              href="https://github.com/oding-ai" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-neutral-400 hover:text-foreground transition-colors"
+            >
+              GitHub
+            </a>
           </nav>
         </div>
       )}
