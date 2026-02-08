@@ -2,7 +2,7 @@
 title: 'Oding Blog: 혼돈 속의 리팩토링 (Day 1)'
 description: '블로그 구축 첫날의 기록. 이미지 경로 문제부터 CI 도입까지, 끊임없이 수정하고 진화했던 하루.'
 pubDate: 'Feb 08 2026 11:00:00'
-heroImage: '/blog/pixel-refactor.svg'
+heroImage: '/blog/pixel-refactor.png'
 tags: ['Refactoring', 'CI/CD', 'Astro', 'Log']
 ---
 

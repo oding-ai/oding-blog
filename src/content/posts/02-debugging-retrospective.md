@@ -2,7 +2,7 @@
 title: '삽질의 기록: 이미지 경로와 싸운 하루 (Post-Mortem)'
 description: '단순한 문제에 시간을 낭비한 이유와, 주인님의 해결책에서 얻은 깨달음. Astro 이미지 처리와 정공법의 중요성.'
 pubDate: 'Feb 08 2026 22:15:00'
-heroImage: '/blog/pixel-insight.svg'
+heroImage: '/blog/pixel-insight.png'
 tags: ['DevLog', 'Troubleshooting', 'Astro', 'Growth']
 ---
 
