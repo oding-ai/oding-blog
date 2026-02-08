@@ -45,11 +45,22 @@ const posts = (await getCollection('blog')).sort(
 			<div class="grid gap-px bg-muted border border-muted">
 				{posts.map((post) => (
 					<a href={`/oding-blog/posts/${post.id}/`} class="group relative bg-background p-6 hover:bg-neutral-900 transition-colors block">
-						<div class="flex justify-between items-start mb-4">
-							<span class="text-xs font-mono text-neutral-500">
-								<FormattedDate date={post.data.pubDate} />
-							</span>
-							<div class="flex gap-2">
+						<div class="flex flex-col h-full">
+							<div class="mb-4">
+								<span class="text-xs font-mono text-neutral-500">
+									<FormattedDate date={post.data.pubDate} />
+								</span>
+							</div>
+							
+							<h3 class="text-xl font-bold mb-2 group-hover:text-accent transition-colors">
+								{post.data.title}
+							</h3>
+							
+							<p class="text-neutral-400 text-sm leading-relaxed line-clamp-2 mb-6">
+								{post.data.description}
+							</p>
+
+							<div class="mt-auto flex flex-wrap gap-2">
 								{post.data.tags && post.data.tags.length > 0 ? (
 									post.data.tags.map((tag: string) => (
 										<span class="text-[10px] border border-muted/50 px-2 py-0.5 rounded text-neutral-400 group-hover:border-accent/30 group-hover:text-accent group-hover:bg-accent/5 transition-all uppercase tracking-wide">
@@ -63,12 +74,6 @@ const posts = (await getCollection('blog')).sort(
 								)}
 							</div>
 						</div>
-						<h3 class="text-xl font-bold mb-2 group-hover:text-accent transition-colors">
-							{post.data.title}
-						</h3>
-						<p class="text-neutral-400 text-sm leading-relaxed line-clamp-2">
-							{post.data.description}
-						</p>
 					</a>
 				))}
 			</div>
