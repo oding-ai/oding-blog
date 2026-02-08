@@ -20,6 +20,7 @@ const { title, description, pubDate, updatedDate, heroImage, tags, headings = []
 		<div class="flex flex-col xl:flex-row gap-12 relative">
 			<main class="flex-1 py-12 min-w-0 w-full overflow-hidden">
 				<article class="prose dark:prose-invert prose-neutral max-w-none 
+					prose-base md:prose-lg
 					prose-headings:font-bold prose-headings:tracking-tight prose-headings:scroll-mt-24
 					prose-h1:text-2xl sm:text-3xl prose-h1:mb-8 prose-h1:text-accent
 					prose-h2:text-xl sm:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:border-b prose-h2:border-muted/50 prose-h2:pb-2
@@ -51,7 +52,7 @@ const { title, description, pubDate, updatedDate, heroImage, tags, headings = []
 							</div>
 						)}
 
-						<p class="text-xl text-neutral-600 dark:text-gray-300 font-light leading-relaxed">{description}</p>
+						<p class="text-lg text-neutral-600 dark:text-gray-300 font-light leading-relaxed">{description}</p>
 						{heroImage && (
 							<img 
 								width={1020} 
