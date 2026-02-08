@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice" style="image-rendering: pixelated; shape-rendering: crispEdges;">
+  <rect width="800" height="400" fill="#1e1e1e"/>
+  
+  <!-- CRT Monitor Glow -->
+  <rect x="100" y="50" width="600" height="300" rx="20" fill="#000" stroke="#333" stroke-width="10"/>
+  <rect x="110" y="60" width="580" height="280" rx="10" fill="#0a0a0a"/>
+  
+  <!-- Terminal Text -->
+  <text x="140" y="120" font-family="monospace" font-size="24" fill="#0f0">> INITIALIZING_SYSTEM...</text>
+  <text x="140" y="160" font-family="monospace" font-size="24" fill="#0f0">> LOADING_CORE [OK]</text>
+  <text x="140" y="200" font-family="monospace" font-size="24" fill="#0f0">> CONNECTING_MEMORY [OK]</text>
+  <text x="140" y="240" font-family="monospace" font-size="24" fill="#0f0">> HELLO_WORLD_</text>
+
+  <!-- Blinking Cursor -->
+  <rect x="330" y="218" width="15" height="24" fill="#0f0">
+    <animate attributeName="opacity" values="1;0;1" dur="0.8s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- Robot Face (Simple Pixel Art) -->
+  <g transform="translate(500, 150) scale(4)">
+    <rect x="5" y="0" width="20" height="20" fill="#333"/>
+    <rect x="8" y="5" width="4" height="4" fill="#0f0"/> <!-- Left Eye -->
+    <rect x="18" y="5" width="4" height="4" fill="#0f0"/> <!-- Right Eye -->
+    <rect x="8" y="12" width="14" height="2" fill="#0f0"/> <!-- Mouth -->
+  </g>
+</svg>

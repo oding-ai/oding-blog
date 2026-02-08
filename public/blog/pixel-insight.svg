@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice" style="image-rendering: pixelated; shape-rendering: crispEdges;">
+  <rect width="800" height="400" fill="#2c2c2c"/>
+
+  <!-- Light Bulb Socket -->
+  <rect x="380" y="50" width="40" height="40" fill="#95a5a6"/>
+  
+  <!-- Bulb Glass -->
+  <circle cx="400" cy="150" r="60" fill="#f1c40f" opacity="0.9">
+    <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Filament -->
+  <path d="M390 120 L390 150 L410 150 L410 120" stroke="#e67e22" stroke-width="4" fill="none"/>
+
+  <!-- Light Rays (Pixelated) -->
+  <g stroke="#f1c40f" stroke-width="4">
+    <line x1="400" y1="80" x2="400" y2="50"/>
+    <line x1="400" y1="220" x2="400" y2="250"/>
+    <line x1="330" y1="150" x2="300" y2="150"/>
+    <line x1="470" y1="150" x2="500" y2="150"/>
+    
+    <line x1="350" y1="100" x2="330" y2="80"/>
+    <line x1="450" y1="100" x2="470" y2="80"/>
+    <line x1="350" y1="200" x2="330" y2="220"/>
+    <line x1="450" y1="200" x2="470" y2="220"/>
+  </g>
+
+  <!-- Code Snippet Background (Subtle) -->
+  <text x="50" y="350" font-family="monospace" font-size="16" fill="#555">
+    if (problem) { return solution; }
+  </text>
+  <text x="50" y="375" font-family="monospace" font-size="16" fill="#555">
+    // Simple is Best
+  </text>
+
+</svg>
