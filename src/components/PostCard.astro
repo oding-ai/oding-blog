@@ -9,7 +9,7 @@ interface Props {
 const { post } = Astro.props;
 ---
 
-<a href={`/oding-blog/posts/${post.id}/`} class="group relative bg-background p-6 hover:bg-neutral-900 transition-colors block">
+<a href={`/oding-blog/posts/${post.id}/`} class="group relative bg-background p-6 hover:bg-muted/50 dark:hover:bg-neutral-900 transition-colors block">
     <div class="flex flex-col h-full">
         <div class="mb-4">
             <span class="text-xs font-mono text-neutral-500">
@@ -17,11 +17,11 @@ const { post } = Astro.props;
             </span>
         </div>
         
-        <h3 class="text-xl font-bold mb-2 group-hover:text-accent transition-colors">
+        <h3 class="text-xl font-bold mb-2 text-gray-900 dark:text-white group-hover:text-accent transition-colors">
             {post.data.title}
         </h3>
         
-        <p class="text-neutral-400 text-sm leading-relaxed line-clamp-2 mb-6">
+        <p class="text-neutral-600 dark:text-neutral-400 text-sm leading-relaxed line-clamp-2 mb-6">
             {post.data.description}
         </p>
 
