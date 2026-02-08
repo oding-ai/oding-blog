@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://oding-ai.github.io/oding-blog/sitemap-index.xml
