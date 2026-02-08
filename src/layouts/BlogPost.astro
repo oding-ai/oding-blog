@@ -23,7 +23,7 @@ const { title, description, pubDate, updatedDate, heroImage, tags, headings = []
 					prose-headings:font-bold prose-headings:tracking-tight prose-headings:scroll-mt-24
 					prose-h1:text-2xl sm:text-3xl prose-h1:mb-8 prose-h1:text-accent
 					prose-h2:text-xl sm:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:border-b prose-h2:border-muted/50 prose-h2:pb-2
-					prose-p:text-neutral-700 dark:prose-p:text-neutral-300 prose-p:leading-7
+					prose-p:text-neutral-700 dark:prose-p:text-gray-200 prose-p:leading-7
 					prose-pre:bg-[#1e1e1e] prose-pre:border prose-pre:border-muted prose-pre:rounded-lg prose-pre:overflow-x-auto prose-pre:max-w-[calc(100vw-32px)] sm:prose-pre:max-w-none
 					prose-code:text-accent prose-code:bg-accent/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
 					prose-img:max-w-full prose-img:h-auto prose-img:rounded-lg
@@ -38,7 +38,7 @@ const { title, description, pubDate, updatedDate, heroImage, tags, headings = []
 								</div>
 							)}
 						</div>
-						<h1 class="!mb-4 text-gray-900 dark:text-white">{title}</h1>
+						<h1 class="!mb-4 text-gray-900 dark:text-gray-100">{title}</h1>
 						
 						{/* Tags */}
 						{tags && tags.length > 0 && (
@@ -51,7 +51,7 @@ const { title, description, pubDate, updatedDate, heroImage, tags, headings = []
 							</div>
 						)}
 
-						<p class="text-xl text-neutral-600 dark:text-neutral-400 font-light leading-relaxed">{description}</p>
+						<p class="text-xl text-neutral-600 dark:text-gray-300 font-light leading-relaxed">{description}</p>
 						{heroImage && (
 							<img 
 								width={1020} 
