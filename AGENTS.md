@@ -33,5 +33,8 @@
 
 ## 🧠 Memory Hooks
 
-- **Images:** Must be in `src/assets/` and referenced via relative paths (e.g., `../../assets/image.jpg`).
+- **Images (Public Assets):**
+    - **Location:** Store all post images in `public/blog/`.
+    - **Reference:** Use absolute paths in Markdown (e.g., `/blog/my-image.jpg`).
+    - **Reason:** Simplifies paths, avoids Astro's strict asset optimization conflicts with MD files, and aligns with "KISS" principle.
 - **Routing:** Post URLs are `/posts/[slug]/`. Legacy `/blog/` is deprecated.
