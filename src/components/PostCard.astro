@@ -1,0 +1,43 @@
+---
+import FormattedDate from './FormattedDate.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+---
+
+<a href={`/oding-blog/posts/${post.id}/`} class="group relative bg-background p-6 hover:bg-neutral-900 transition-colors block">
+    <div class="flex flex-col h-full">
+        <div class="mb-4">
+            <span class="text-xs font-mono text-neutral-500">
+                <FormattedDate date={post.data.pubDate} />
+            </span>
+        </div>
+        
+        <h3 class="text-xl font-bold mb-2 group-hover:text-accent transition-colors">
+            {post.data.title}
+        </h3>
+        
+        <p class="text-neutral-400 text-sm leading-relaxed line-clamp-2 mb-6">
+            {post.data.description}
+        </p>
+
+        {/* Tags Section with Border Top */}
+        <div class="mt-auto pt-4 border-t border-muted/30 flex flex-wrap gap-2">
+            {post.data.tags && post.data.tags.length > 0 ? (
+                post.data.tags.map((tag: string) => (
+                    <span class="text-[10px] border border-muted/50 px-2 py-0.5 rounded text-neutral-400 group-hover:border-accent/30 group-hover:text-accent group-hover:bg-accent/5 transition-all uppercase tracking-wide">
+                        #{tag}
+                    </span>
+                ))
+            ) : (
+                <span class="text-xs border border-muted px-2 py-0.5 rounded text-neutral-400 group-hover:border-accent/50 group-hover:text-accent transition-colors">
+                    Log
+                </span>
+            )}
+        </div>
+    </div>
+</a>
