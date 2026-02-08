@@ -7,6 +7,15 @@
 @import '@fontsource/ibm-plex-mono/700.css';
 
 :root {
+  /* Light Mode (Default) */
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --accent: #009926; /* Darker Green for Light Mode visibility */
+  --muted: #e5e5e5;
+}
+
+:root.dark {
+  /* Dark Mode */
   --background: #0a0a0a;
   --foreground: #ededed;
   --accent: #00ff41; /* Neon Green */
