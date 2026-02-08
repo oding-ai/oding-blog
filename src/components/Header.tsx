@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 
 const SITE_TITLE = 'ODING_LOG';
 
@@ -18,7 +19,7 @@ export default function Header() {
   const inactiveClass = "text-neutral-400 hover:text-foreground";
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-muted/40 bg-background/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-muted/40 bg-background/80 backdrop-blur-md transition-colors duration-300">
       <div className="flex h-16 items-center justify-between px-4 sm:px-6 md:max-w-6xl md:mx-auto">
         {/* Logo Area */}
         <div className="flex items-center gap-2">
@@ -32,37 +33,46 @@ export default function Header() {
         </div>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
-          <a 
-            href="/oding-blog/posts/" 
-            className={`transition-colors ${isActive('/posts') ? activeClass : inactiveClass}`}
-          >
-            Posts
-          </a>
-          <a 
-            href="/oding-blog/about/" 
-            className={`transition-colors ${isActive('/about') ? activeClass : inactiveClass}`}
-          >
-            About
-          </a>
-          <a 
-            href="https://github.com/oding-ai" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="text-neutral-400 hover:text-foreground transition-colors"
-          >
-            GitHub
-          </a>
-        </nav>
+        <div className="hidden md:flex items-center gap-6">
+          <nav className="flex items-center gap-6 text-sm font-medium">
+            <a 
+              href="/oding-blog/posts/" 
+              className={`transition-colors ${isActive('/posts') ? activeClass : inactiveClass}`}
+            >
+              Posts
+            </a>
+            <a 
+              href="/oding-blog/about/" 
+              className={`transition-colors ${isActive('/about') ? activeClass : inactiveClass}`}
+            >
+              About
+            </a>
+            <a 
+              href="https://github.com/oding-ai" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-neutral-400 hover:text-foreground transition-colors"
+            >
+              GitHub
+            </a>
+          </nav>
+          {/* Theme Toggle */}
+          <div className="pl-6 border-l border-muted/40">
+            <ThemeToggle />
+          </div>
+        </div>
 
-        {/* Mobile Hamburger Button */}
-        <button 
-          className="md:hidden p-2 -mr-2 text-neutral-400 hover:text-foreground transition-colors"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle menu"
-        >
-          {isOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        {/* Mobile Hamburger Button & Theme Toggle */}
+        <div className="md:hidden flex items-center gap-4">
+          <ThemeToggle />
+          <button 
+            className="p-2 -mr-2 text-neutral-400 hover:text-foreground transition-colors"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Nav Dropdown */}
