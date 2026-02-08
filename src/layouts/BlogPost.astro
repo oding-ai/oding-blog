@@ -65,6 +65,8 @@ const { title, description, pubDate, updatedDate, heroImage, tags, headings = []
 						)}
 					</div>
 
+					{headings && headings.length > 0 && <TableOfContents headings={headings} mobile={true} />}
+
 					<slot />
 				</article>
 			</main>
