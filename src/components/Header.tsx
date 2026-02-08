@@ -67,7 +67,7 @@ export default function Header() {
 
       {/* Mobile Nav Dropdown */}
       {isOpen && (
-        <div className="md:hidden border-t border-muted/40 bg-background">
+        <div className="md:hidden absolute top-16 left-0 w-full border-b border-muted/40 bg-background/95 backdrop-blur-md z-40">
           <nav className="flex flex-col p-4 space-y-4 text-sm font-medium animate-in slide-in-from-top-2 fade-in duration-200">
             <a 
               href="/oding-blog/posts/" 
