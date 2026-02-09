@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" style="image-rendering: pixelated; shape-rendering: crispEdges;">
+  <rect width="800" height="400" fill="#0f0f0f"/>
+  
+  <!-- Hot Path (Red Zone) -->
+  <rect x="50" y="50" width="300" height="300" fill="#1a0505" stroke="#ff0055" stroke-width="4" stroke-dasharray="10 5"/>
+  <text x="70" y="90" font-family="monospace" font-size="20" fill="#ff0055">HOT PATH (SPEED)</text>
+  
+  <!-- Engine -->
+  <rect x="100" y="150" width="80" height="80" fill="#ff0055"/>
+  <text x="110" y="200" font-family="monospace" font-size="14" fill="#000">ENGINE</text>
+  
+  <!-- Risk -->
+  <rect x="220" y="150" width="80" height="80" fill="#ff9900"/>
+  <text x="235" y="200" font-family="monospace" font-size="14" fill="#000">RISK</text>
+  
+  <!-- Connection -->
+  <line x1="180" y1="190" x2="220" y2="190" stroke="#fff" stroke-width="4"/>
+
+  <!-- Cold Path (Blue Zone) -->
+  <rect x="450" y="50" width="300" height="300" fill="#050a1a" stroke="#00d8ff" stroke-width="4" stroke-dasharray="10 5"/>
+  <text x="470" y="90" font-family="monospace" font-size="20" fill="#00d8ff">COLD PATH (SAFE)</text>
+  
+  <!-- DB -->
+  <rect x="550" y="150" width="100" height="120" fill="#00d8ff"/>
+  <text x="580" y="215" font-family="monospace" font-size="14" fill="#000">DB</text>
+  
+  <!-- Stream -->
+  <path d="M350 190 L450 190" stroke="#00ff9d" stroke-width="4" stroke-dasharray="4"/>
+  <text x="365" y="180" font-family="monospace" font-size="12" fill="#00ff9d">STREAM</text>
+
+</svg>
