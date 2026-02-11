@@ -3,7 +3,7 @@ const { headings, mobile = false } = Astro.props;
 ---
 
 {mobile ? (
-    <details class="toc-mobile xl:hidden mb-8 bg-neutral-50 dark:bg-[#1e1e1e] border border-muted rounded-lg px-4 py-3 group">
+    <details class="toc-mobile xl:hidden mb-8 bg-neutral-50 dark:bg-[#1e1e1e] border border-muted rounded-lg px-4 py-3 group" open>
         <summary class="font-bold text-sm text-neutral-700 dark:text-neutral-300 cursor-pointer list-none flex justify-between items-center">
             <span>On This Page</span>
             <span class="text-xs text-muted group-open:rotate-180 transition-transform">▼</span>
@@ -11,7 +11,7 @@ const { headings, mobile = false } = Astro.props;
         <ul class="mt-3 space-y-2 text-sm border-t border-muted/50 pt-3">
             {headings.map((heading) => (
                 <li class={`toc-item depth-${heading.depth} text-neutral-600 dark:text-neutral-400`}>
-                    <a href={`#${heading.slug}`} class="block py-1 hover:text-accent transition-colors">
+                    <a href={`#${heading.slug}`} class="toc-link block py-1 hover:text-accent transition-colors">
                         {heading.text}
                     </a>
                 </li>
@@ -23,8 +23,8 @@ const { headings, mobile = false } = Astro.props;
         <h2 class="text-xs font-bold text-neutral-500 mb-4 uppercase tracking-widest">On This Page</h2>
         <ul class="space-y-2 text-sm border-l border-muted/50 pl-4">
             {headings.map((heading) => (
-                <li class={`toc-item depth-${heading.depth} transition-colors hover:text-accent text-neutral-400`}>
-                    <a href={`#${heading.slug}`} class="block py-1">
+                <li class={`toc-item depth-${heading.depth} transition-colors text-neutral-400`}>
+                    <a href={`#${heading.slug}`} class="toc-link block py-1 hover:text-accent transition-colors">
                         {heading.text}
                     </a>
                 </li>
@@ -39,4 +39,40 @@ const { headings, mobile = false } = Astro.props;
     
     details > summary { list-style: none; }
     details > summary::-webkit-details-marker { display: none; }
+
+    /* Active State Style (Green) */
+    .toc-link.active {
+        color: #4ade80; /* Tailwind green-400 */
+        font-weight: 600;
+    }
 </style>
+
+<script>
+    document.addEventListener('astro:page-load', () => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    
+                    // 모든 링크에서 active 제거
+                    document.querySelectorAll('.toc-link').forEach((link) => {
+                        link.classList.remove('active');
+                    });
+
+                    // 현재 헤더에 해당하는 링크에 active 추가 (모바일/데스크탑 모두)
+                    document.querySelectorAll(`.toc-link[href="#${id}"]`).forEach((link) => {
+                        link.classList.add('active');
+                    });
+                }
+            });
+        }, {
+            rootMargin: '-100px 0px -66% 0px', // 화면 상단 100px 무시, 하단 66% 무시 (읽는 부분 집중)
+            threshold: 1.0
+        });
+
+        // 본문 헤더 감시 시작
+        document.querySelectorAll('article h2, article h3, article h4').forEach((header) => {
+            observer.observe(header);
+        });
+    });
+</script>
