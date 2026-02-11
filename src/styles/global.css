@@ -60,3 +60,11 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent);
 }
+
+/* 📱 Mobile List Fix: Ensure numbers/bullets are visible */
+.prose ol, .prose ul {
+  padding-left: 1.5rem !important; /* Force padding */
+}
+.prose li {
+  padding-left: 0.5rem; /* Space between number and text */
+}
